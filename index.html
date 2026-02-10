@@ -120,6 +120,7 @@
   <meta name="twitter:title"       content="SEO Fundamentals: Complete On-Page Guide">
   <meta name="twitter:description" content="Every SEO concept explained and implemented live on this page.">
   <meta name="twitter:image"       content="https://risa-source.github.io/BasicSEOImprovement/optimized-image.jpg">
+  <!-- twitter:site → add your @handle here if you have one, e.g. content="@yourhandle" -->
 
   <!--
     [SEO #9] Author + Theme Color
@@ -164,6 +165,8 @@
 
     @context → always "https://schema.org"
     @type    → the schema type
+
+    ⚑ CUSTOMIZE: Replace all URLs, name, and dates below with your own.
   -->
   <script type="application/ld+json">
   {
@@ -182,11 +185,7 @@
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Rishi Saraff Web Services",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://risa-source.github.io/BasicSEOImprovement/optimized-image.jpg"
-      }
+      "name": "Rishi Saraff Web Services"
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -194,6 +193,15 @@
     }
   }
   </script>
+  <!--
+    NOTE on publisher.logo: Schema.org recommends a dedicated logo image
+    (rectangular, ~60px tall, e.g. logo.png). If you don't have one yet,
+    it's better to omit the logo property entirely rather than reuse
+    the article image — Google's Rich Results Test will flag a mismatch.
+    Once you have a logo, add:
+      "logo": { "@type": "ImageObject", "url": "https://yourdomain.com/logo.png" }
+    inside the "publisher" block above.
+  -->
 
   <!--
     [SEO #12] Performance hints — dns-prefetch & preconnect
@@ -233,413 +241,6 @@
   <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="style.css"></noscript>
 
-  <style>
-    /* ── Design Direction: Dark terminal/editorial hybrid ────────
-       Monospace code-culture meets structured editorial layout.
-       Sharp contrast, phosphor-green accent, tight grid.
-       Memorable detail: glowing code blocks + scan-line texture on hero.
-    ──────────────────────────────────────────────────────────── */
-    :root {
-      --bg:          #060d0a;
-      --bg-surface:  #0c1a14;
-      --bg-card:     #101f18;
-      --bg-code:     #081510;
-      --border:      #1a3326;
-      --border-glow: #0ea47a40;
-
-      --green:       #0ea47a;
-      --green-bright:#12d4a0;
-      --green-dim:   #0ea47a55;
-      --green-text:  #0ea47a;
-      --amber:       #f59e0b;
-      --red:         #f87171;
-      --blue:        #60a5fa;
-
-      --text-primary:   #e8f5f1;
-      --text-secondary: #8ab3a0;
-      --text-muted:     #4d7a67;
-      --text-code:      #a8e6ce;
-
-      --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'Epilogue', sans-serif;
-
-      --radius: 6px;
-      --max-w: 1080px;
-    }
-
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-    html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text-primary);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* scanline texture on hero */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(6,13,10,0.15) 2px,
-        rgba(6,13,10,0.15) 4px
-      );
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── Skip link ── */
-    .skip-link {
-      position: absolute; top: -100%; left: 1rem;
-      background: var(--green); color: var(--bg);
-      padding: .5rem 1rem; border-radius: var(--radius);
-      font-size: .8rem; font-weight: 700; text-decoration: none; z-index: 9999;
-    }
-    .skip-link:focus { top: .75rem; }
-    :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 3px; }
-
-    /* ── Header / Hero ── */
-    header {
-      position: relative;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    header::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 55% 60% at 100% 0%, #0ea47a18 0%, transparent 60%),
-        radial-gradient(ellipse 40% 50% at 0% 100%, #0ea47a10 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .nav-bar {
-      position: relative; z-index: 1;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: .75rem;
-      max-width: var(--max-w); margin: 0 auto;
-      padding: 1.25rem 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: var(--font-mono);
-      font-weight: 600; font-size: .85rem;
-      color: var(--green); letter-spacing: .04em;
-    }
-    .nav-logo span { color: var(--text-muted); }
-    nav { display: flex; gap: .25rem; flex-wrap: wrap; }
-    nav a {
-      font-family: var(--font-mono);
-      color: var(--text-secondary); text-decoration: none;
-      font-size: .75rem; padding: .35rem .75rem;
-      border-radius: var(--radius);
-      border: 1px solid transparent;
-      transition: color .2s, border-color .2s, background .2s;
-    }
-    nav a:hover { color: var(--green); border-color: var(--border-glow); background: var(--bg-card); }
-
-    .hero {
-      position: relative; z-index: 1;
-      max-width: var(--max-w); margin: 0 auto;
-      padding: 5rem 2rem 4rem;
-    }
-    .hero-tag {
-      display: inline-block;
-      font-family: var(--font-mono); font-size: .7rem; font-weight: 600;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: var(--green); background: var(--green-dim);
-      border: 1px solid var(--green-text);
-      padding: .3rem .8rem; border-radius: 100px;
-      margin-bottom: 1.75rem;
-    }
-    h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 6vw, 4.2rem);
-      font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
-      color: var(--text-primary); max-width: 16ch; margin-bottom: 1.5rem;
-    }
-    h1 em { font-style: normal; color: var(--green); }
-    .hero-desc {
-      font-size: clamp(.95rem, 2vw, 1.1rem);
-      color: var(--text-secondary); max-width: 55ch; line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-stats {
-      display: flex; gap: 2.5rem; flex-wrap: wrap;
-      padding-top: 2rem; border-top: 1px solid var(--border);
-    }
-    .stat { display: flex; flex-direction: column; gap: .2rem; }
-    .stat-num {
-      font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600;
-      color: var(--green);
-    }
-    .stat-label { font-size: .75rem; color: var(--text-muted); letter-spacing: .05em; text-transform: uppercase; }
-
-    /* ── Layout ── */
-    .page-wrap {
-      max-width: var(--max-w); margin: 0 auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 0;
-    }
-
-    /* ── Sidebar TOC ── */
-    .sidebar {
-      position: sticky; top: 0;
-      height: 100vh; overflow-y: auto;
-      padding: 3rem 1.5rem 3rem 0;
-      border-right: 1px solid var(--border);
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
-    }
-    .sidebar-label {
-      font-family: var(--font-mono); font-size: .65rem;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 1rem;
-      padding-bottom: .5rem; border-bottom: 1px solid var(--border);
-    }
-    .toc { list-style: none; }
-    .toc li + li { margin-top: .1rem; }
-    .toc a {
-      display: flex; align-items: center; gap: .6rem;
-      font-family: var(--font-mono); font-size: .72rem;
-      color: var(--text-muted); text-decoration: none;
-      padding: .4rem .6rem; border-radius: var(--radius);
-      transition: color .2s, background .2s;
-      line-height: 1.4;
-    }
-    .toc a:hover { color: var(--green); background: var(--bg-card); }
-    .toc-num {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 18px; height: 18px; flex-shrink: 0;
-      font-size: .62rem; font-weight: 600;
-      background: var(--bg-surface); border: 1px solid var(--border);
-      border-radius: 3px; color: var(--text-muted);
-    }
-
-    /* ── Main content ── */
-    .content {
-      padding: 3rem 0 3rem 3rem;
-      min-width: 0;
-    }
-
-    /* ── Chapter sections ── */
-    .chapter {
-      margin-bottom: 4rem;
-      padding-bottom: 4rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .chapter:last-child { border-bottom: none; }
-
-    .chapter-meta {
-      display: flex; align-items: center; gap: .75rem;
-      margin-bottom: 1.25rem;
-    }
-    .chapter-num {
-      font-family: var(--font-mono); font-size: .65rem; font-weight: 600;
-      color: var(--green); letter-spacing: .08em; text-transform: uppercase;
-      background: var(--green-dim); border: 1px solid var(--green-text);
-      padding: .2rem .6rem; border-radius: 100px;
-    }
-    .chapter-category {
-      font-family: var(--font-mono); font-size: .65rem;
-      color: var(--text-muted); letter-spacing: .06em; text-transform: uppercase;
-    }
-
-    h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 800; letter-spacing: -.02em;
-      color: var(--text-primary); margin-bottom: 1rem; line-height: 1.2;
-    }
-
-    h3 {
-      font-family: var(--font-mono); font-size: .85rem; font-weight: 600;
-      color: var(--green); letter-spacing: .04em; text-transform: uppercase;
-      margin: 1.75rem 0 .6rem;
-    }
-
-    p { color: var(--text-secondary); margin-bottom: 1rem; font-size: .97rem; }
-
-    /* ── Code blocks ── */
-    .code-block {
-      position: relative;
-      background: var(--bg-code);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      margin: 1.5rem 0;
-      overflow: hidden;
-    }
-    .code-block::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--green), transparent);
-    }
-    .code-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: .6rem 1rem;
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border);
-    }
-    .code-filename {
-      font-family: var(--font-mono); font-size: .7rem;
-      color: var(--text-muted); letter-spacing: .04em;
-    }
-    .code-lang {
-      font-family: var(--font-mono); font-size: .62rem; font-weight: 600;
-      letter-spacing: .08em; text-transform: uppercase;
-      color: var(--green); background: var(--green-dim);
-      padding: .15rem .5rem; border-radius: 3px;
-    }
-    pre {
-      padding: 1.25rem 1.25rem;
-      overflow-x: auto;
-      font-family: var(--font-mono);
-      font-size: .78rem; line-height: 1.8;
-      color: var(--text-code);
-      tab-size: 2;
-    }
-    .c  { color: var(--text-muted); font-style: italic; }   /* comment */
-    .t  { color: var(--green-bright); }                      /* tag/key */
-    .a  { color: var(--amber); }                             /* attribute */
-    .v  { color: var(--blue); }                              /* value */
-    .p  { color: var(--text-code); }                         /* punctuation */
-
-    /* ── Info callouts ── */
-    .callout {
-      display: flex; gap: 1rem; align-items: flex-start;
-      padding: 1rem 1.25rem;
-      border-radius: var(--radius);
-      margin: 1.25rem 0;
-      border-left: 3px solid;
-    }
-    .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
-    .callout-body { font-family: var(--font-mono); font-size: .8rem; line-height: 1.7; }
-    .callout.tip    { background: #0ea47a10; border-color: var(--green);  color: var(--green-bright); }
-    .callout.warn   { background: #f59e0b10; border-color: var(--amber);  color: var(--amber); }
-    .callout.info   { background: #60a5fa10; border-color: var(--blue);   color: var(--blue); }
-    .callout.danger { background: #f8717110; border-color: var(--red);    color: var(--red); }
-
-    /* ── Comparison table ── */
-    .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
-    table {
-      width: 100%; border-collapse: collapse;
-      font-family: var(--font-mono); font-size: .78rem;
-    }
-    th {
-      text-align: left; padding: .6rem 1rem;
-      background: var(--bg-surface); color: var(--green);
-      border: 1px solid var(--border);
-      letter-spacing: .05em; text-transform: uppercase; font-size: .65rem;
-    }
-    td {
-      padding: .6rem 1rem; color: var(--text-secondary);
-      border: 1px solid var(--border); vertical-align: top;
-    }
-    tr:nth-child(even) td { background: var(--bg-surface); }
-    .tag-yes { color: var(--green); font-weight: 600; }
-    .tag-no  { color: var(--red); }
-    .tag-partial { color: var(--amber); }
-
-    /* ── Tag anatomy diagram ── */
-    .anatomy {
-      background: var(--bg-code);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem 1.5rem 1.25rem;
-      margin: 1.5rem 0;
-      font-family: var(--font-mono); font-size: .82rem;
-    }
-    .anatomy-line { line-height: 2.2; white-space: pre-wrap; word-break: break-all; }
-    .bracket { color: var(--text-muted); }
-    .akey    { color: var(--green-bright); }
-    .aval    { color: var(--blue); }
-    .label-arrow {
-      display: block; font-size: .68rem;
-      color: var(--text-muted); margin-top: .25rem;
-      padding-left: 1rem; border-left: 1px solid var(--border);
-      line-height: 1.5;
-    }
-
-    /* ── Checklist ── */
-    .checklist { list-style: none; margin: 1rem 0; }
-    .checklist li {
-      display: flex; gap: .75rem; align-items: flex-start;
-      font-family: var(--font-mono); font-size: .8rem;
-      color: var(--text-secondary); padding: .4rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .checklist li:last-child { border-bottom: none; }
-    .chk {
-      width: 16px; height: 16px; flex-shrink: 0; margin-top: .1rem;
-      border: 1px solid var(--green); border-radius: 3px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .6rem; color: var(--green);
-    }
-
-    /* ── CWV grid ── */
-    .cwv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
-    .cwv-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.25rem;
-    }
-    .cwv-abbr {
-      font-family: var(--font-mono); font-size: 1.4rem; font-weight: 600;
-      color: var(--green); line-height: 1;
-    }
-    .cwv-name {
-      font-family: var(--font-mono); font-size: .65rem;
-      color: var(--text-muted); margin-top: .3rem; margin-bottom: .75rem;
-      letter-spacing: .04em;
-    }
-    .cwv-desc { font-size: .82rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
-    .cwv-threshold {
-      display: inline-block; margin-top: .75rem;
-      font-family: var(--font-mono); font-size: .7rem;
-      padding: .2rem .5rem; border-radius: 3px;
-      background: var(--green-dim); color: var(--green);
-    }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-    }
-    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
-    footer p {
-      font-family: var(--font-mono); font-size: .72rem;
-      color: var(--text-muted); margin-bottom: .4rem;
-    }
-    footer a { color: var(--green); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .page-wrap { grid-template-columns: 1fr; }
-      .sidebar { display: none; }
-      .content { padding: 2rem 0; }
-      .nav-bar { padding: 1rem 1.25rem; }
-      .hero { padding: 3rem 1.25rem 2.5rem; }
-      .cwv-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-      html { scroll-behavior: auto; }
-    }
-  </style>
 </head>
 
 <body>
@@ -689,7 +290,7 @@
         Every technique is live, right here.
       </p>
       <div class="hero-stats">
-        <div class="stat"><span class="stat-num">14</span><span class="stat-label">Head tag techniques</span></div>
+        <div class="stat"><span class="stat-num">16</span><span class="stat-label">SEO techniques</span></div>
         <div class="stat"><span class="stat-num">3</span><span class="stat-label">Core Web Vitals</span></div>
         <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Implemented live</span></div>
       </div>
@@ -869,8 +470,9 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
             <span class="code-lang">HTML</span>
           </div>
           <pre><code><span class="c">&lt;!-- Place in &lt;head&gt;. Always use absolute URL with https:// --&gt;</span>
+<span class="c">&lt;!-- ⚑ Replace with YOUR production URL --&gt;</span>
 <span class="t">&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"canonical"</span>
-      <span class="a">href</span><span class="p">=</span><span class="v">"https://risa-source.github.io/BasicSEOImprovement/"</span><span class="t">&gt;</span></code></pre>
+      <span class="a">href</span><span class="p">=</span><span class="v">"https://yourdomain.com/this-page/"</span><span class="t">&gt;</span></code></pre>
         </div>
 
         <div class="callout info">
@@ -892,23 +494,38 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
           and usually gets it wrong.
         </p>
 
+        <div class="callout warn">
+          <span class="callout-icon">&#9651;</span>
+          <span class="callout-body">The code examples below use yourdomain.com as a placeholder. Swap every instance with your actual production URL before deploying. The live &lt;head&gt; of this page already uses the correct URL — view source to see the real implementation.</span>
+        </div>
+
         <div class="code-block">
           <div class="code-header">
-            <span class="code-filename">index.html — full Open Graph implementation</span>
+            <span class="code-filename">index.html — Open Graph for a standard webpage</span>
             <span class="code-lang">HTML</span>
           </div>
-          <pre><code><span class="c">&lt;!-- Required --&gt;</span>
+          <pre><code><span class="c">&lt;!-- Use og:type="website" for homepages and standard pages --&gt;</span>
+<span class="c">&lt;!-- ⚑ Replace yourdomain.com with your actual URL throughout --&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:type"</span>        <span class="a">content</span><span class="p">=</span><span class="v">"website"</span><span class="t">&gt;</span>
-<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:title"</span>       <span class="a">content</span><span class="p">=</span><span class="v">"SEO Fundamentals: Complete On-Page Guide"</span><span class="t">&gt;</span>
-<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:description"</span>  <span class="a">content</span><span class="p">=</span><span class="v">"Every SEO technique described here is implemented live on this page."</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:title"</span>       <span class="a">content</span><span class="p">=</span><span class="v">"Your Page Title Here"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:description"</span>  <span class="a">content</span><span class="p">=</span><span class="v">"Describe the page in 1–2 sentences."</span><span class="t">&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:image"</span>        <span class="a">content</span><span class="p">=</span><span class="v">"https://yourdomain.com/og-image.jpg"</span><span class="t">&gt;</span>
-
-<span class="c">&lt;!-- Recommended --&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:url"</span>          <span class="a">content</span><span class="p">=</span><span class="v">"https://yourdomain.com/this-page/"</span><span class="t">&gt;</span>
-<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:site_name"</span>    <span class="a">content</span><span class="p">=</span><span class="v">"Your Brand Name"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:site_name"</span>    <span class="a">content</span><span class="p">=</span><span class="v">"Your Brand Name"</span><span class="t">&gt;</span></code></pre>
+        </div>
 
-<span class="c">&lt;!-- For articles/blog posts --&gt;</span>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html — Open Graph for a blog post or article</span>
+            <span class="code-lang">HTML</span>
+          </div>
+          <pre><code><span class="c">&lt;!-- Use og:type="article" for blog posts and news pages --&gt;</span>
+<span class="c">&lt;!-- IMPORTANT: a page can only have ONE og:type value.      --&gt;</span>
+<span class="c">&lt;!-- Choose "website" OR "article" — never both.            --&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:type"</span>               <span class="a">content</span><span class="p">=</span><span class="v">"article"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:title"</span>              <span class="a">content</span><span class="p">=</span><span class="v">"Your Article Title"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:description"</span>         <span class="a">content</span><span class="p">=</span><span class="v">"Article summary here."</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:image"</span>               <span class="a">content</span><span class="p">=</span><span class="v">"https://yourdomain.com/og-image.jpg"</span><span class="t">&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"article:published_time"</span> <span class="a">content</span><span class="p">=</span><span class="v">"2026-02-10T00:00:00Z"</span><span class="t">&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"article:author"</span>         <span class="a">content</span><span class="p">=</span><span class="v">"https://twitter.com/yourhandle"</span><span class="t">&gt;</span></code></pre>
         </div>
@@ -941,9 +558,10 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
 <span class="c">&lt;!-- app                = for app download cards                --&gt;</span>
 <span class="c">&lt;!-- player             = for video/audio cards                 --&gt;</span>
 
+<span class="c">&lt;!-- ⚑ Replace yourdomain.com and @yourhandle with your own --&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:card"</span>        <span class="a">content</span><span class="p">=</span><span class="v">"summary_large_image"</span><span class="t">&gt;</span>
-<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:title"</span>       <span class="a">content</span><span class="p">=</span><span class="v">"SEO Fundamentals: Complete On-Page Guide"</span><span class="t">&gt;</span>
-<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:description"</span>  <span class="a">content</span><span class="p">=</span><span class="v">"Every SEO concept explained and implemented live."</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:title"</span>       <span class="a">content</span><span class="p">=</span><span class="v">"Your Page Title Here"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:description"</span>  <span class="a">content</span><span class="p">=</span><span class="v">"Short summary for the Twitter card."</span><span class="t">&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:image"</span>        <span class="a">content</span><span class="p">=</span><span class="v">"https://yourdomain.com/og-image.jpg"</span><span class="t">&gt;</span>
 <span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:site"</span>         <span class="a">content</span><span class="p">=</span><span class="v">"@yourhandle"</span><span class="t">&gt;</span>  <span class="c">&lt;!-- optional --&gt;</span></code></pre>
         </div>
@@ -982,33 +600,47 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
         </div>
 
         <h3>JSON-LD format (recommended)</h3>
+
+        <div class="callout warn">
+          <span class="callout-icon">&#9651;</span>
+          <span class="callout-body">The template below uses yourdomain.com placeholders. The live &lt;head&gt; of this page uses the real production URLs — view source to see the actual implementation. Also note: if you don't have a dedicated logo image yet, omit the publisher.logo property. Using your article image as the logo will cause a warning in Google's Rich Results Test.</span>
+        </div>
+
         <div class="code-block">
           <div class="code-header">
-            <span class="code-filename">index.html — JSON-LD Article schema (live on this page)</span>
+            <span class="code-filename">index.html — JSON-LD Article schema template</span>
             <span class="code-lang">JSON-LD</span>
           </div>
-          <pre><code><span class="t">&lt;script</span> <span class="a">type</span><span class="p">=</span><span class="v">"application/ld+json"</span><span class="t">&gt;</span>
+          <pre><code><span class="c">&lt;!-- ⚑ Replace all yourdomain.com values with your own URLs --&gt;</span>
+<span class="t">&lt;script</span> <span class="a">type</span><span class="p">=</span><span class="v">"application/ld+json"</span><span class="t">&gt;</span>
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "SEO Fundamentals: A Complete On-Page Guide",
-  "description": "A complete guide to SEO...",
+  "headline": "Your Article Headline Here",
+  "description": "A short description of the article.",
   "image": "https://yourdomain.com/og-image.jpg",
   "url": "https://yourdomain.com/",
-  "datePublished": "2026-02-10",
-  "dateModified": "2026-02-10",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
   "author": {
     "@type": "Person",
-    "name": "Rishi Saraff",
+    "name": "Your Name",
     "url": "https://yourdomain.com/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Rishi Saraff Web Services",
+    "name": "Your Organisation Name",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://yourdomain.com/logo.jpg"
+      "url": "https://yourdomain.com/logo.png"
+      <span class="c">// logo should be a dedicated image, NOT the article image</span>
+      <span class="c">// recommended: rectangular, ~60px tall, on a white background</span>
+      <span class="c">// if you don't have a logo yet, delete this entire "logo" block</span>
     }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://yourdomain.com/"
   }
 }
 <span class="t">&lt;/script&gt;</span></code></pre>
@@ -1052,7 +684,7 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
 <span class="t">Disallow:</span> <span class="v">/checkout/</span>        <span class="c"># block checkout pages</span>
 <span class="t">Disallow:</span> <span class="v">/search?</span>          <span class="c"># block internal search results</span>
 
-<span class="c"># Point to your sitemap — helps crawlers find all your pages</span>
+<span class="c"># ⚑ Point to YOUR sitemap URL — not yourdomain.com</span>
 <span class="t">Sitemap:</span> <span class="v">https://yourdomain.com/sitemap.xml</span>
 
 <span class="c">---</span>
@@ -1079,14 +711,21 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
 
         <div class="code-block">
           <div class="code-header">
-            <span class="code-filename">robots.txt — this project (correct version)</span>
+            <span class="code-filename">robots.txt — this project (production-ready)</span>
             <span class="code-lang">TEXT</span>
           </div>
           <pre><code><span class="t">User-agent:</span> <span class="v">*</span>
 <span class="t">Allow:</span> <span class="v">/</span>
 <span class="t">Sitemap:</span> <span class="v">https://risa-source.github.io/BasicSEOImprovement/sitemap.xml</span>
 
-<span class="c"># Wrong (original file — this would prevent Google finding your sitemap):</span>
+<span class="c"># Block AI training crawlers</span>
+<span class="t">User-agent:</span> <span class="v">GPTBot</span>
+<span class="t">Disallow:</span> <span class="v">/</span>
+
+<span class="t">User-agent:</span> <span class="v">CCBot</span>
+<span class="t">Disallow:</span> <span class="v">/</span>
+
+<span class="c"># Wrong (what NOT to do — this would prevent Google finding your sitemap):</span>
 <span class="c"># Sitemap: http://localhost/Workshop11/sitemap.xml</span></code></pre>
         </div>
       </section>
@@ -1110,6 +749,7 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
             <span class="code-lang">XML</span>
           </div>
           <pre><code><span class="p">&lt;?</span><span class="t">xml</span> <span class="a">version</span><span class="p">=</span><span class="v">"1.0"</span> <span class="a">encoding</span><span class="p">=</span><span class="v">"UTF-8"</span><span class="p">?&gt;</span>
+<span class="c">&lt;!-- ⚑ Replace yourdomain.com with your actual production URL --&gt;</span>
 <span class="t">&lt;urlset</span> <span class="a">xmlns</span><span class="p">=</span><span class="v">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="t">&gt;</span>
 
   <span class="t">&lt;url&gt;</span>
@@ -1340,7 +980,7 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
           <li><span class="chk">&#10003;</span> Canonical link tag with absolute production URL</li>
           <li><span class="chk">&#10003;</span> meta robots content="index, follow" (or noindex where needed)</li>
           <li><span class="chk">&#10003;</span> Full Open Graph tags: type, title, description, image, url, site_name</li>
-          <li><span class="chk">&#10003;</span> Twitter Card tags: card, title, description, image</li>
+          <li><span class="chk">&#10003;</span> Twitter Card tags: card, title, description, image — twitter:site is optional</li>
           <li><span class="chk">&#10003;</span> JSON-LD structured data matching the page content type</li>
           <li><span class="chk">&#10003;</span> Favicon (SVG preferred, data URI avoids extra request)</li>
         </ul>
