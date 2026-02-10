@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
 Sitemap: https://risa-source.github.io/BasicSEOImprovement/sitemap.xml
+
+# Block AI training crawlers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /

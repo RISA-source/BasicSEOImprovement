@@ -1,177 +1,1398 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  SEO FUNDAMENTALS — A Complete Guide
+  ============================================================
+  This page IS its own SEO demonstration.
+  Every technique described here is implemented live above,
+  in the <head>, in this markup, and in the companion files:
+    robots.txt  →  crawler access rules
+    sitemap.xml →  index structure for search engines
+  ============================================================
+-->
+
+<!--
+  [SEO #1] lang attribute
+  ─────────────────────────────────────────────────────────────
+  The lang attribute on <html> tells search engines and screen
+  readers what language the page is in.
+  Google uses it to serve the right page to the right region.
+  Without it, language detection is guesswork.
+-->
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
+
+  <!--
+    [SEO #2] Viewport meta tag
+    ─────────────────────────────────────────────────────────────
+    Not strictly "SEO", but Google uses mobile-friendliness as
+    a ranking signal. Without this tag your page renders at
+    desktop width on phones and Google will penalise it.
+    width=device-width  → match the device screen width
+    initial-scale=1.0   → no zoom on load
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Rishi Saraff offers professional web design, development, and SEO services to help businesses grow online with fast, modern, and accessible solutions.">
-  <meta name="author" content="Rishi Saraff">
+
+  <!--
+    [SEO #3] Title tag  ← THE most important on-page SEO element
+    ─────────────────────────────────────────────────────────────
+    - Shown as the blue link in Google search results (SERP)
+    - Recommended length: 50–60 characters
+    - Put your primary keyword near the front
+    - Every page must have a unique title
+    - Format: Primary Keyword — Secondary Keyword | Brand Name
+  -->
+  <title>SEO Fundamentals: Complete On-Page Guide | Rishi Saraff</title>
+
+  <!--
+    [SEO #4] Meta description
+    ─────────────────────────────────────────────────────────────
+    Shown as the grey snippet under the title in search results.
+    It does NOT directly affect rankings — but it massively
+    affects click-through rate (CTR), which does.
+    - 150–160 characters max (truncated beyond that)
+    - Summarise the page, include a call to action
+    - Must be unique per page — duplicate descriptions are flagged
+  -->
+  <meta name="description" content="A complete, practical guide to SEO fundamentals — meta tags, structured data, robots.txt, sitemaps, and more — all implemented live on this very page.">
+
+  <!--
+    [SEO #5] Meta robots
+    ─────────────────────────────────────────────────────────────
+    Controls how crawlers index this page and follow its links.
+    index   → include this page in search results (default)
+    follow  → follow outbound links on this page (default)
+    noindex → exclude from search results (login pages, thank-you pages)
+    nofollow → do not pass link equity through outbound links
+    You only need this tag to OVERRIDE the default (index, follow).
+  -->
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0f766e">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Rishi Saraff - Professional Web Services">
-  <meta property="og:description" content="Professional web design, development, and SEO services to help your business grow online with fast, modern solutions.">
-  <meta property="og:image" content="https://risa-source.github.io/BasicSEOImprovement/optimized-image.jpg">
-  <meta property="og:url" content="https://risa-source.github.io/BasicSEOImprovement/">
-  <meta property="og:site_name" content="Rishi Saraff Web Services">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Rishi Saraff - Professional Web Services">
-  <meta name="twitter:description" content="Professional web design, development, and SEO services to help your business grow online.">
-  <meta name="twitter:image" content="https://risa-source.github.io/BasicSEOImprovement/optimized-image.jpg">
-
-  <!-- Canonical -->
+  <!--
+    [SEO #6] Canonical URL
+    ─────────────────────────────────────────────────────────────
+    Solves the duplicate content problem.
+    If your page is accessible at multiple URLs:
+      https://example.com/page
+      https://example.com/page?utm_source=email
+      https://www.example.com/page
+    Google may treat these as separate pages and split your
+    ranking signals. The canonical tag says: "THIS is the
+    authoritative URL. Consolidate all signals here."
+    Always use the absolute, full URL including https://.
+  -->
   <link rel="canonical" href="https://risa-source.github.io/BasicSEOImprovement/">
 
-  <!-- Favicon (inline SVG as data URI) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230f766e'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'>R</text></svg>">
+  <!--
+    [SEO #7] Open Graph tags (Facebook, LinkedIn, Slack, iMessage)
+    ─────────────────────────────────────────────────────────────
+    When someone shares your URL, platforms scrape these tags to
+    build the rich preview card (image + title + description).
+    Without them, the platform picks content randomly — often
+    a logo or the first image on the page.
+    og:type     → the kind of content (website, article, video)
+    og:title    → headline shown in the card (can differ from <title>)
+    og:description → body text of the card
+    og:image    → preview image. Recommended: 1200×630px
+    og:url      → canonical URL for this content
+    og:site_name → your brand name
+  -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="SEO Fundamentals: Complete On-Page Guide">
+  <meta property="og:description" content="Every SEO technique described here is implemented live on this page. Meta tags, structured data, robots.txt, sitemaps — the complete picture.">
+  <meta property="og:image"       content="https://risa-source.github.io/BasicSEOImprovement/optimized-image.jpg">
+  <meta property="og:url"         content="https://risa-source.github.io/BasicSEOImprovement/">
+  <meta property="og:site_name"   content="Rishi Saraff Web Services">
 
-  <title>Rishi Saraff - Professional Web Design, Development & SEO Services</title>
+  <!--
+    [SEO #8] Twitter Card tags
+    ─────────────────────────────────────────────────────────────
+    Twitter (X) uses its own set of meta tags, not Open Graph.
+    summary_large_image → full-width image card (most effective)
+    summary             → small image thumbnail on the left
+    twitter:site        → your @handle (optional but good practice)
+    If twitter:title/description are absent, Twitter falls back
+    to og:title / og:description automatically.
+  -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="SEO Fundamentals: Complete On-Page Guide">
+  <meta name="twitter:description" content="Every SEO concept explained and implemented live on this page.">
+  <meta name="twitter:image"       content="https://risa-source.github.io/BasicSEOImprovement/optimized-image.jpg">
 
-  <!-- Fonts -->
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <!--
+    [SEO #9] Author + Theme Color
+    ─────────────────────────────────────────────────────────────
+    author    → associates the page with a person or organisation.
+                Used by some search engines for entity recognition.
+    theme-color → colours the browser chrome on mobile (Android/Chrome).
+                  Not a ranking factor, but improves brand perception.
+  -->
+  <meta name="author"      content="Rishi Saraff">
+  <meta name="theme-color" content="#0ea47a">
 
-  <!-- Stylesheet -->
-  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="style.css"></noscript>
+  <!--
+    [SEO #10] Favicon
+    ─────────────────────────────────────────────────────────────
+    Appears in browser tabs, bookmarks, and some SERP listings.
+    Not a ranking factor — but it signals a professional,
+    maintained site, which correlates with lower bounce rates.
+    SVG favicons scale perfectly at any size.
+    The data URI below avoids an extra HTTP request entirely.
+  -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230ea47a'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='900' font-size='18' fill='%23001a12'>S</text></svg>">
 
-  <!-- Structured Data: LocalBusiness / Person -->
+  <!--
+    [SEO #11] JSON-LD Structured Data (Schema.org)
+    ─────────────────────────────────────────────────────────────
+    Structured data gives Google machine-readable facts about
+    your content so it can generate "rich results" in the SERP:
+    star ratings, FAQs, breadcrumbs, events, recipes, job postings.
+
+    JSON-LD is the preferred format (vs Microdata or RDFa).
+    Place it in <head> or just before </body>.
+
+    Common schema types:
+      Article, BlogPosting → news/blog content
+      LocalBusiness        → physical location with hours
+      Person               → personal/portfolio sites
+      Product              → e-commerce
+      FAQPage              → FAQ accordion rich results
+      BreadcrumbList       → breadcrumb trail in SERP
+      WebSite + SearchAction → enables sitelinks searchbox
+
+    @context → always "https://schema.org"
+    @type    → the schema type
+  -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Rishi Saraff Web Services",
-    "url": "https://risa-source.github.io/BasicSEOImprovement/",
+    "@type": "Article",
+    "headline": "SEO Fundamentals: A Complete On-Page Guide",
+    "description": "A complete, practical guide to SEO fundamentals — meta tags, structured data, robots.txt, sitemaps — all implemented live on this very page.",
     "image": "https://risa-source.github.io/BasicSEOImprovement/optimized-image.jpg",
-    "description": "Professional web design, development, and SEO services.",
-    "founder": {
+    "url": "https://risa-source.github.io/BasicSEOImprovement/",
+    "datePublished": "2026-02-10",
+    "dateModified": "2026-02-10",
+    "author": {
       "@type": "Person",
-      "name": "Rishi Saraff"
+      "name": "Rishi Saraff",
+      "url": "https://risa-source.github.io/BasicSEOImprovement/"
     },
-    "serviceType": ["Web Design", "Web Development", "Search Engine Optimization"],
-    "areaServed": "Worldwide"
+    "publisher": {
+      "@type": "Organization",
+      "name": "Rishi Saraff Web Services",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://risa-source.github.io/BasicSEOImprovement/optimized-image.jpg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://risa-source.github.io/BasicSEOImprovement/"
+    }
   }
   </script>
+
+  <!--
+    [SEO #12] Performance hints — dns-prefetch & preconnect
+    ─────────────────────────────────────────────────────────────
+    Page speed is a confirmed Google ranking factor (Core Web Vitals).
+    These hints tell the browser to start connecting to external
+    domains before they're needed:
+    dns-prefetch  → resolves the domain name early (cheap, ~20ms saved)
+    preconnect    → does DNS + TCP + TLS handshake early (~100–300ms saved)
+    Use preconnect only for critical origins (fonts, CDN).
+    Too many preconnects waste bandwidth.
+  -->
+  <link rel="dns-prefetch"  href="//fonts.googleapis.com">
+  <link rel="preconnect"    href="https://fonts.googleapis.com">
+  <link rel="preconnect"    href="https://fonts.gstatic.com" crossorigin>
+
+  <!--
+    [SEO #13] Font loading — display=swap prevents invisible text
+    ─────────────────────────────────────────────────────────────
+    font-display:swap → shows system font immediately, swaps when
+    the custom font loads. Prevents "Flash of Invisible Text" (FOIT)
+    which hurts CLS (Cumulative Layout Shift) — a Core Web Vitals metric.
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@700;800&family=Epilogue:wght@400;500&display=swap" rel="stylesheet">
+
+  <!--
+    [SEO #14] Non-render-blocking CSS
+    ─────────────────────────────────────────────────────────────
+    By default, <link rel="stylesheet"> blocks rendering — the browser
+    won't paint ANYTHING until the CSS downloads.
+    The preload trick below loads CSS asynchronously:
+      rel="preload" as="style"  → download at high priority, don't block render
+      onload="...rel='stylesheet'" → apply it once downloaded
+    The <noscript> fallback covers browsers with JS disabled.
+    This improves Largest Contentful Paint (LCP) — a Core Web Vitals metric.
+  -->
+  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="style.css"></noscript>
+
+  <style>
+    /* ── Design Direction: Dark terminal/editorial hybrid ────────
+       Monospace code-culture meets structured editorial layout.
+       Sharp contrast, phosphor-green accent, tight grid.
+       Memorable detail: glowing code blocks + scan-line texture on hero.
+    ──────────────────────────────────────────────────────────── */
+    :root {
+      --bg:          #060d0a;
+      --bg-surface:  #0c1a14;
+      --bg-card:     #101f18;
+      --bg-code:     #081510;
+      --border:      #1a3326;
+      --border-glow: #0ea47a40;
+
+      --green:       #0ea47a;
+      --green-bright:#12d4a0;
+      --green-dim:   #0ea47a55;
+      --green-text:  #0ea47a;
+      --amber:       #f59e0b;
+      --red:         #f87171;
+      --blue:        #60a5fa;
+
+      --text-primary:   #e8f5f1;
+      --text-secondary: #8ab3a0;
+      --text-muted:     #4d7a67;
+      --text-code:      #a8e6ce;
+
+      --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'Epilogue', sans-serif;
+
+      --radius: 6px;
+      --max-w: 1080px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* scanline texture on hero */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(6,13,10,0.15) 2px,
+        rgba(6,13,10,0.15) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: var(--green); color: var(--bg);
+      padding: .5rem 1rem; border-radius: var(--radius);
+      font-size: .8rem; font-weight: 700; text-decoration: none; z-index: 9999;
+    }
+    .skip-link:focus { top: .75rem; }
+    :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 3px; }
+
+    /* ── Header / Hero ── */
+    header {
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 60% at 100% 0%, #0ea47a18 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 0% 100%, #0ea47a10 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .nav-bar {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: .75rem;
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-weight: 600; font-size: .85rem;
+      color: var(--green); letter-spacing: .04em;
+    }
+    .nav-logo span { color: var(--text-muted); }
+    nav { display: flex; gap: .25rem; flex-wrap: wrap; }
+    nav a {
+      font-family: var(--font-mono);
+      color: var(--text-secondary); text-decoration: none;
+      font-size: .75rem; padding: .35rem .75rem;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    nav a:hover { color: var(--green); border-color: var(--border-glow); background: var(--bg-card); }
+
+    .hero {
+      position: relative; z-index: 1;
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: .7rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--green); background: var(--green-dim);
+      border: 1px solid var(--green-text);
+      padding: .3rem .8rem; border-radius: 100px;
+      margin-bottom: 1.75rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
+      color: var(--text-primary); max-width: 16ch; margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: normal; color: var(--green); }
+    .hero-desc {
+      font-size: clamp(.95rem, 2vw, 1.1rem);
+      color: var(--text-secondary); max-width: 55ch; line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; flex-wrap: wrap;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .stat { display: flex; flex-direction: column; gap: .2rem; }
+    .stat-num {
+      font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600;
+      color: var(--green);
+    }
+    .stat-label { font-size: .75rem; color: var(--text-muted); letter-spacing: .05em; text-transform: uppercase; }
+
+    /* ── Layout ── */
+    .page-wrap {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+    }
+
+    /* ── Sidebar TOC ── */
+    .sidebar {
+      position: sticky; top: 0;
+      height: 100vh; overflow-y: auto;
+      padding: 3rem 1.5rem 3rem 0;
+      border-right: 1px solid var(--border);
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .sidebar-label {
+      font-family: var(--font-mono); font-size: .65rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 1rem;
+      padding-bottom: .5rem; border-bottom: 1px solid var(--border);
+    }
+    .toc { list-style: none; }
+    .toc li + li { margin-top: .1rem; }
+    .toc a {
+      display: flex; align-items: center; gap: .6rem;
+      font-family: var(--font-mono); font-size: .72rem;
+      color: var(--text-muted); text-decoration: none;
+      padding: .4rem .6rem; border-radius: var(--radius);
+      transition: color .2s, background .2s;
+      line-height: 1.4;
+    }
+    .toc a:hover { color: var(--green); background: var(--bg-card); }
+    .toc-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; flex-shrink: 0;
+      font-size: .62rem; font-weight: 600;
+      background: var(--bg-surface); border: 1px solid var(--border);
+      border-radius: 3px; color: var(--text-muted);
+    }
+
+    /* ── Main content ── */
+    .content {
+      padding: 3rem 0 3rem 3rem;
+      min-width: 0;
+    }
+
+    /* ── Chapter sections ── */
+    .chapter {
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .chapter:last-child { border-bottom: none; }
+
+    .chapter-meta {
+      display: flex; align-items: center; gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+    .chapter-num {
+      font-family: var(--font-mono); font-size: .65rem; font-weight: 600;
+      color: var(--green); letter-spacing: .08em; text-transform: uppercase;
+      background: var(--green-dim); border: 1px solid var(--green-text);
+      padding: .2rem .6rem; border-radius: 100px;
+    }
+    .chapter-category {
+      font-family: var(--font-mono); font-size: .65rem;
+      color: var(--text-muted); letter-spacing: .06em; text-transform: uppercase;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 800; letter-spacing: -.02em;
+      color: var(--text-primary); margin-bottom: 1rem; line-height: 1.2;
+    }
+
+    h3 {
+      font-family: var(--font-mono); font-size: .85rem; font-weight: 600;
+      color: var(--green); letter-spacing: .04em; text-transform: uppercase;
+      margin: 1.75rem 0 .6rem;
+    }
+
+    p { color: var(--text-secondary); margin-bottom: 1rem; font-size: .97rem; }
+
+    /* ── Code blocks ── */
+    .code-block {
+      position: relative;
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+    .code-block::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+    }
+    .code-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .6rem 1rem;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .code-filename {
+      font-family: var(--font-mono); font-size: .7rem;
+      color: var(--text-muted); letter-spacing: .04em;
+    }
+    .code-lang {
+      font-family: var(--font-mono); font-size: .62rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--green); background: var(--green-dim);
+      padding: .15rem .5rem; border-radius: 3px;
+    }
+    pre {
+      padding: 1.25rem 1.25rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: .78rem; line-height: 1.8;
+      color: var(--text-code);
+      tab-size: 2;
+    }
+    .c  { color: var(--text-muted); font-style: italic; }   /* comment */
+    .t  { color: var(--green-bright); }                      /* tag/key */
+    .a  { color: var(--amber); }                             /* attribute */
+    .v  { color: var(--blue); }                              /* value */
+    .p  { color: var(--text-code); }                         /* punctuation */
+
+    /* ── Info callouts ── */
+    .callout {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      margin: 1.25rem 0;
+      border-left: 3px solid;
+    }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+    .callout-body { font-family: var(--font-mono); font-size: .8rem; line-height: 1.7; }
+    .callout.tip    { background: #0ea47a10; border-color: var(--green);  color: var(--green-bright); }
+    .callout.warn   { background: #f59e0b10; border-color: var(--amber);  color: var(--amber); }
+    .callout.info   { background: #60a5fa10; border-color: var(--blue);   color: var(--blue); }
+    .callout.danger { background: #f8717110; border-color: var(--red);    color: var(--red); }
+
+    /* ── Comparison table ── */
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-family: var(--font-mono); font-size: .78rem;
+    }
+    th {
+      text-align: left; padding: .6rem 1rem;
+      background: var(--bg-surface); color: var(--green);
+      border: 1px solid var(--border);
+      letter-spacing: .05em; text-transform: uppercase; font-size: .65rem;
+    }
+    td {
+      padding: .6rem 1rem; color: var(--text-secondary);
+      border: 1px solid var(--border); vertical-align: top;
+    }
+    tr:nth-child(even) td { background: var(--bg-surface); }
+    .tag-yes { color: var(--green); font-weight: 600; }
+    .tag-no  { color: var(--red); }
+    .tag-partial { color: var(--amber); }
+
+    /* ── Tag anatomy diagram ── */
+    .anatomy {
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.5rem 1.25rem;
+      margin: 1.5rem 0;
+      font-family: var(--font-mono); font-size: .82rem;
+    }
+    .anatomy-line { line-height: 2.2; white-space: pre-wrap; word-break: break-all; }
+    .bracket { color: var(--text-muted); }
+    .akey    { color: var(--green-bright); }
+    .aval    { color: var(--blue); }
+    .label-arrow {
+      display: block; font-size: .68rem;
+      color: var(--text-muted); margin-top: .25rem;
+      padding-left: 1rem; border-left: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    /* ── Checklist ── */
+    .checklist { list-style: none; margin: 1rem 0; }
+    .checklist li {
+      display: flex; gap: .75rem; align-items: flex-start;
+      font-family: var(--font-mono); font-size: .8rem;
+      color: var(--text-secondary); padding: .4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .chk {
+      width: 16px; height: 16px; flex-shrink: 0; margin-top: .1rem;
+      border: 1px solid var(--green); border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .6rem; color: var(--green);
+    }
+
+    /* ── CWV grid ── */
+    .cwv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .cwv-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem;
+    }
+    .cwv-abbr {
+      font-family: var(--font-mono); font-size: 1.4rem; font-weight: 600;
+      color: var(--green); line-height: 1;
+    }
+    .cwv-name {
+      font-family: var(--font-mono); font-size: .65rem;
+      color: var(--text-muted); margin-top: .3rem; margin-bottom: .75rem;
+      letter-spacing: .04em;
+    }
+    .cwv-desc { font-size: .82rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0; }
+    .cwv-threshold {
+      display: inline-block; margin-top: .75rem;
+      font-family: var(--font-mono); font-size: .7rem;
+      padding: .2rem .5rem; border-radius: 3px;
+      background: var(--green-dim); color: var(--green);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+    }
+    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+    footer p {
+      font-family: var(--font-mono); font-size: .72rem;
+      color: var(--text-muted); margin-bottom: .4rem;
+    }
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .content { padding: 2rem 0; }
+      .nav-bar { padding: 1rem 1.25rem; }
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      .cwv-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
 
 <body>
-
-  <!-- Skip to content for accessibility -->
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <!--
+    [SEO #15] Semantic landmark elements
+    ─────────────────────────────────────────────────────────────
+    Search engines parse your page structure to understand
+    what content is most important.
+    <header>  → site-wide header / hero
+    <nav>     → navigation (use aria-label if multiple navs)
+    <main>    → the primary unique content of this page
+    <article> → self-contained piece of content
+    <section> → thematic grouping (always give it a heading)
+    <footer>  → site-wide footer
+    Generic <div> and <span> carry no semantic meaning.
+  -->
   <header role="banner">
-    <div class="header-inner">
-      <div class="header-brand">
-        <span class="brand-mark" aria-hidden="true">RS</span>
-        <div>
-          <p class="brand-label">Rishi Saraff</p>
-          <p class="brand-sub">Web Services</p>
-        </div>
-      </div>
+    <div class="nav-bar">
+      <span class="nav-logo">rishi<span>.</span>saraff <span>/ seo-guide</span></span>
       <nav aria-label="Primary navigation">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
+        <a href="#head-tags">Head Tags</a>
+        <a href="#structured-data">Schema</a>
+        <a href="#crawling">Crawling</a>
+        <a href="#content">Content</a>
+        <a href="#performance">Performance</a>
+        <a href="#checklist">Checklist</a>
       </nav>
     </div>
-    <div class="hero" id="home">
-      <h1>Professional Web Services<br><span class="hero-accent">Built to Perform</span></h1>
-      <p class="hero-sub">Web design, development, and SEO solutions that help businesses grow online with clarity, speed, and purpose.</p>
-      <a href="#services" class="cta-btn">Explore Services</a>
+    <div class="hero">
+      <span class="hero-tag">Live SEO Reference</span>
+      <!--
+        [SEO #16] H1 — one per page, contains your primary keyword
+        ─────────────────────────────────────────────────────────────
+        The H1 is the most prominent on-page content signal.
+        Rules:
+        - Exactly ONE <h1> per page
+        - It should match or closely reflect the <title> tag
+        - Include your primary keyword naturally
+        - Do not stuff keywords — write for humans
+      -->
+      <h1>SEO Fundamentals.<br><em>Explained Live.</em></h1>
+      <p class="hero-desc">
+        Everything on this page — the HTML comments, the meta tags, the markup, the companion files —
+        is itself a working SEO implementation. Read the guide. Look at the source.
+        Every technique is live, right here.
+      </p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">14</span><span class="stat-label">Head tag techniques</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">Core Web Vitals</span></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Implemented live</span></div>
+      </div>
     </div>
   </header>
 
-  <main id="main-content">
+  <div class="page-wrap">
 
-    <!-- About Section -->
-    <section id="about" aria-labelledby="about-heading">
-      <div class="section-inner">
-        <p class="section-label">About</p>
-        <h2 id="about-heading">Crafting Digital Experiences That Matter</h2>
-        <div class="about-grid">
-          <div class="about-text">
-            <p>We build fast, accessible, and search-engine-optimised websites for businesses that want more than a digital brochure. Every project is approached with a focus on performance, clarity, and measurable results.</p>
-            <p>From initial concept to live deployment, our process is transparent, collaborative, and grounded in best practices that stand the test of time.</p>
+    <!-- Sidebar TOC -->
+    <aside class="sidebar" aria-label="Table of contents">
+      <p class="sidebar-label">Contents</p>
+      <ul class="toc" role="list">
+        <li><a href="#head-tags"><span class="toc-num">01</span> Head Tags</a></li>
+        <li><a href="#title-desc"><span class="toc-num">02</span> Title &amp; Description</a></li>
+        <li><a href="#canonical"><span class="toc-num">03</span> Canonical URL</a></li>
+        <li><a href="#open-graph"><span class="toc-num">04</span> Open Graph</a></li>
+        <li><a href="#twitter-card"><span class="toc-num">05</span> Twitter Card</a></li>
+        <li><a href="#structured-data"><span class="toc-num">06</span> Structured Data</a></li>
+        <li><a href="#crawling"><span class="toc-num">07</span> robots.txt</a></li>
+        <li><a href="#sitemap"><span class="toc-num">08</span> Sitemap</a></li>
+        <li><a href="#content"><span class="toc-num">09</span> Content SEO</a></li>
+        <li><a href="#images"><span class="toc-num">10</span> Images</a></li>
+        <li><a href="#performance"><span class="toc-num">11</span> Performance</a></li>
+        <li><a href="#checklist"><span class="toc-num">12</span> Checklist</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content -->
+    <main id="main-content" class="content">
+
+      <!-- ── CHAPTER 1: HEAD TAGS ── -->
+      <section id="head-tags" class="chapter" aria-labelledby="ch-head">
+        <div class="chapter-meta">
+          <span class="chapter-num">01</span>
+          <span class="chapter-category">Foundation</span>
+        </div>
+        <h2 id="ch-head">The &lt;head&gt; — Where SEO Begins</h2>
+        <p>
+          Everything in <code style="font-family:var(--font-mono);color:var(--green);font-size:.85em">&lt;head&gt;</code> is invisible to your user but essential to search engines, browsers, and social platforms.
+          None of it shows on screen — all of it shapes how your page is discovered, indexed, and displayed.
+        </p>
+        <p>
+          The head is where you declare the page's identity, control how crawlers behave, specify what appears
+          when your link is shared, and load resources without hurting performance.
+          Getting these tags right is table stakes. Getting them wrong wastes everything else.
+        </p>
+
+        <div class="callout tip">
+          <span class="callout-icon">&#9670;</span>
+          <span class="callout-body">Every tag in this section is implemented live in the &lt;head&gt; of this page. Open DevTools → Elements and follow along.</span>
+        </div>
+
+        <h3>The minimal viable head</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html — minimum required</span>
+            <span class="code-lang">HTML</span>
           </div>
-          <figure class="about-figure">
-            <img
-              src="optimized-image.jpg"
-              alt="Modern office workspace showcasing a professional team environment with clean desks and natural light"
-              loading="lazy"
-              width="800"
-              height="600"
-              decoding="async">
-            <figcaption>Our working environment — built for focus and collaboration.</figcaption>
-          </figure>
+          <pre><code><span class="t">&lt;head&gt;</span>
+  <span class="c">&lt;!-- 1. Character encoding — ALWAYS first --&gt;</span>
+  <span class="t">&lt;meta</span> <span class="a">charset</span><span class="p">=</span><span class="v">"UTF-8"</span><span class="t">&gt;</span>
+
+  <span class="c">&lt;!-- 2. Mobile-first viewport --&gt;</span>
+  <span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"viewport"</span> <span class="a">content</span><span class="p">=</span><span class="v">"width=device-width, initial-scale=1.0"</span><span class="t">&gt;</span>
+
+  <span class="c">&lt;!-- 3. The most important SEO tag --&gt;</span>
+  <span class="t">&lt;title&gt;</span>Primary Keyword — Secondary | Brand<span class="t">&lt;/title&gt;</span>
+
+  <span class="c">&lt;!-- 4. Snippet shown in search results --&gt;</span>
+  <span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"description"</span> <span class="a">content</span><span class="p">=</span><span class="v">"150–160 chars. Describe the page, include a CTA."</span><span class="t">&gt;</span>
+
+  <span class="c">&lt;!-- 5. Canonical — the authoritative URL --&gt;</span>
+  <span class="t">&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"canonical"</span> <span class="a">href</span><span class="p">=</span><span class="v">"https://yourdomain.com/this-page/"</span><span class="t">&gt;</span>
+<span class="t">&lt;/head&gt;</span></code></pre>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Services Section -->
-    <section id="services" aria-labelledby="services-heading" class="services-section">
-      <div class="section-inner">
-        <p class="section-label">What We Do</p>
-        <h2 id="services-heading">Our Services</h2>
-        <p class="section-intro">Three focused disciplines, one cohesive outcome: a website that works harder for your business.</p>
-        <div class="services" role="list">
-
-          <article class="service-card" role="listitem">
-            <div class="service-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            </div>
-            <h3>Web Design</h3>
-            <p>Purposeful, modern designs built around your brand identity and your users' needs. Every pixel is intentional.</p>
-          </article>
-
-          <article class="service-card" role="listitem">
-            <div class="service-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <h3>Development</h3>
-            <p>Clean, semantic code that loads fast, renders correctly, and scales with your business. No bloat, no shortcuts.</p>
-          </article>
-
-          <article class="service-card" role="listitem">
-            <div class="service-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </div>
-            <h3>SEO</h3>
-            <p>Technical and on-page optimisation so search engines find you, understand you, and rank you where it counts.</p>
-          </article>
-
+      <!-- ── CHAPTER 2: TITLE & DESCRIPTION ── -->
+      <section id="title-desc" class="chapter" aria-labelledby="ch-titledesc">
+        <div class="chapter-meta">
+          <span class="chapter-num">02</span>
+          <span class="chapter-category">On-Page</span>
         </div>
-      </div>
-    </section>
+        <h2 id="ch-titledesc">Title Tag &amp; Meta Description</h2>
+        <p>
+          The title tag is the single most impactful on-page SEO element. It appears as the clickable blue
+          headline in every search result. Google may rewrite it if it finds yours misleading or too short —
+          write it well and it stays yours.
+        </p>
 
-    <!-- Contact / CTA Section -->
-    <section id="contact" aria-labelledby="contact-heading" class="contact-section">
-      <div class="section-inner contact-inner">
-        <p class="section-label">Get in Touch</p>
-        <h2 id="contact-heading">Ready to Start a Project?</h2>
-        <p>Whether you need a new website, a performance overhaul, or better search visibility — reach out and we can talk through what makes sense for your goals.</p>
-        <a href="mailto:hello@rishisaraff.com" class="cta-btn cta-btn--light">Send a Message</a>
-      </div>
-    </section>
+        <h3>Title tag rules</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Rule</th><th>Correct</th><th>Wrong</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Length</td>
+                <td class="tag-yes">50–60 characters</td>
+                <td class="tag-no">80+ chars (truncated in SERP)</td>
+              </tr>
+              <tr>
+                <td>Keyword position</td>
+                <td class="tag-yes">Primary keyword first</td>
+                <td class="tag-no">Brand name first, keyword last</td>
+              </tr>
+              <tr>
+                <td>Uniqueness</td>
+                <td class="tag-yes">Unique per page</td>
+                <td class="tag-no">Same title on all pages</td>
+              </tr>
+              <tr>
+                <td>Content match</td>
+                <td class="tag-yes">Accurately describes the page</td>
+                <td class="tag-no">Clickbait that misleads users</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-  </main>
+        <h3>Meta description rules</h3>
+        <div class="callout warn">
+          <span class="callout-icon">&#9651;</span>
+          <span class="callout-body">Meta descriptions do NOT directly affect rankings. They affect click-through rate (CTR). Higher CTR → more traffic → higher rankings indirectly. Write them for humans, not algorithms.</span>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html</span>
+            <span class="code-lang">HTML</span>
+          </div>
+          <pre><code><span class="c">&lt;!-- GOOD — descriptive, keyword-aware, has implicit CTA --&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"description"</span>
+      <span class="a">content</span><span class="p">=</span><span class="v">"A complete, practical guide to SEO fundamentals —
+               meta tags, structured data, robots.txt, sitemaps,
+               and more — all implemented live on this very page."</span><span class="t">&gt;</span>
+
+<span class="c">&lt;!-- BAD — vague, no keywords, no reason to click --&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"description"</span> <span class="a">content</span><span class="p">=</span><span class="v">"Welcome to our website."</span><span class="t">&gt;</span></code></pre>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 3: CANONICAL ── -->
+      <section id="canonical" class="chapter" aria-labelledby="ch-canonical">
+        <div class="chapter-meta">
+          <span class="chapter-num">03</span>
+          <span class="chapter-category">Technical SEO</span>
+        </div>
+        <h2 id="ch-canonical">Canonical URL</h2>
+        <p>
+          When the same content is accessible at multiple URLs, Google distributes your ranking signals
+          (backlinks, traffic) across all of them instead of consolidating them on one. This dilutes your authority.
+          The canonical tag says: <em style="color:var(--green-bright);font-style:normal">"Ignore the variants. This is the definitive URL."</em>
+        </p>
+
+        <h3>Common causes of duplicate URLs</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">duplicate URL patterns</span>
+            <span class="code-lang">URLs</span>
+          </div>
+          <pre><code><span class="c">## All of these might serve identical content:</span>
+
+https://example.com/page          <span class="c"># clean URL</span>
+https://example.com/page/         <span class="c"># trailing slash variant</span>
+https://www.example.com/page      <span class="c"># www vs non-www</span>
+http://example.com/page           <span class="c"># http vs https</span>
+https://example.com/page?utm_source=email  <span class="c"># UTM parameter</span>
+https://example.com/page?ref=homepage      <span class="c"># referral parameter</span>
+https://example.com/page?sort=asc          <span class="c"># filter/sort parameter</span></code></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html</span>
+            <span class="code-lang">HTML</span>
+          </div>
+          <pre><code><span class="c">&lt;!-- Place in &lt;head&gt;. Always use absolute URL with https:// --&gt;</span>
+<span class="t">&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"canonical"</span>
+      <span class="a">href</span><span class="p">=</span><span class="v">"https://risa-source.github.io/BasicSEOImprovement/"</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="callout info">
+          <span class="callout-icon">&#9432;</span>
+          <span class="callout-body">Self-referential canonicals (a page pointing to itself) are best practice even when you have no duplicate URL issue. They act as a safety net and signal confidence to Google.</span>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 4: OPEN GRAPH ── -->
+      <section id="open-graph" class="chapter" aria-labelledby="ch-og">
+        <div class="chapter-meta">
+          <span class="chapter-num">04</span>
+          <span class="chapter-category">Social SEO</span>
+        </div>
+        <h2 id="ch-og">Open Graph Protocol</h2>
+        <p>
+          Open Graph (OG) was created by Facebook and is now used by LinkedIn, Slack, iMessage, WhatsApp,
+          Discord, and most platforms that generate link previews. Without OG tags, the platform guesses —
+          and usually gets it wrong.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html — full Open Graph implementation</span>
+            <span class="code-lang">HTML</span>
+          </div>
+          <pre><code><span class="c">&lt;!-- Required --&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:type"</span>        <span class="a">content</span><span class="p">=</span><span class="v">"website"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:title"</span>       <span class="a">content</span><span class="p">=</span><span class="v">"SEO Fundamentals: Complete On-Page Guide"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:description"</span>  <span class="a">content</span><span class="p">=</span><span class="v">"Every SEO technique described here is implemented live on this page."</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:image"</span>        <span class="a">content</span><span class="p">=</span><span class="v">"https://yourdomain.com/og-image.jpg"</span><span class="t">&gt;</span>
+
+<span class="c">&lt;!-- Recommended --&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:url"</span>          <span class="a">content</span><span class="p">=</span><span class="v">"https://yourdomain.com/this-page/"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:site_name"</span>    <span class="a">content</span><span class="p">=</span><span class="v">"Your Brand Name"</span><span class="t">&gt;</span>
+
+<span class="c">&lt;!-- For articles/blog posts --&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"og:type"</span>               <span class="a">content</span><span class="p">=</span><span class="v">"article"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"article:published_time"</span> <span class="a">content</span><span class="p">=</span><span class="v">"2026-02-10T00:00:00Z"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">property</span><span class="p">=</span><span class="v">"article:author"</span>         <span class="a">content</span><span class="p">=</span><span class="v">"https://twitter.com/yourhandle"</span><span class="t">&gt;</span></code></pre>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-icon">&#9670;</span>
+          <span class="callout-body">og:image should be 1200×630px minimum (2:1 ratio). Use an absolute URL — relative paths do not work. Host it on a stable, fast URL. Image changes take time to propagate due to platform caching.</span>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 5: TWITTER CARD ── -->
+      <section id="twitter-card" class="chapter" aria-labelledby="ch-twitter">
+        <div class="chapter-meta">
+          <span class="chapter-num">05</span>
+          <span class="chapter-category">Social SEO</span>
+        </div>
+        <h2 id="ch-twitter">Twitter Card</h2>
+        <p>
+          Twitter (X) uses its own meta tags. If absent, it falls back to Open Graph, but the fallback
+          rendering is less reliable. Explicitly set Twitter Card tags for consistent display.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html</span>
+            <span class="code-lang">HTML</span>
+          </div>
+          <pre><code><span class="c">&lt;!-- summary_large_image = full-width banner card (recommended) --&gt;</span>
+<span class="c">&lt;!-- summary            = small thumbnail on the left           --&gt;</span>
+<span class="c">&lt;!-- app                = for app download cards                --&gt;</span>
+<span class="c">&lt;!-- player             = for video/audio cards                 --&gt;</span>
+
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:card"</span>        <span class="a">content</span><span class="p">=</span><span class="v">"summary_large_image"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:title"</span>       <span class="a">content</span><span class="p">=</span><span class="v">"SEO Fundamentals: Complete On-Page Guide"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:description"</span>  <span class="a">content</span><span class="p">=</span><span class="v">"Every SEO concept explained and implemented live."</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:image"</span>        <span class="a">content</span><span class="p">=</span><span class="v">"https://yourdomain.com/og-image.jpg"</span><span class="t">&gt;</span>
+<span class="t">&lt;meta</span> <span class="a">name</span><span class="p">=</span><span class="v">"twitter:site"</span>         <span class="a">content</span><span class="p">=</span><span class="v">"@yourhandle"</span><span class="t">&gt;</span>  <span class="c">&lt;!-- optional --&gt;</span></code></pre>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 6: STRUCTURED DATA ── -->
+      <section id="structured-data" class="chapter" aria-labelledby="ch-schema">
+        <div class="chapter-meta">
+          <span class="chapter-num">06</span>
+          <span class="chapter-category">Technical SEO</span>
+        </div>
+        <h2 id="ch-schema">Structured Data &amp; JSON-LD</h2>
+        <p>
+          Structured data gives Google machine-readable facts about your content.
+          In return, Google can display <strong style="color:var(--text-primary)">rich results</strong> — enhanced SERP listings with star ratings,
+          FAQs, product prices, event dates, and more. Rich results can dramatically increase CTR.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Schema Type</th><th>Rich Result</th><th>Best for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Article</td><td class="tag-yes">Top stories carousel, date</td><td>Blog posts, news</td></tr>
+              <tr><td>Product</td><td class="tag-yes">Price, availability, reviews</td><td>E-commerce</td></tr>
+              <tr><td>FAQPage</td><td class="tag-yes">Expandable Q&amp;A in SERP</td><td>FAQ sections</td></tr>
+              <tr><td>LocalBusiness</td><td class="tag-yes">Map, hours, phone</td><td>Brick &amp; mortar</td></tr>
+              <tr><td>BreadcrumbList</td><td class="tag-yes">Path shown under title</td><td>Multi-level sites</td></tr>
+              <tr><td>Event</td><td class="tag-yes">Date, location, tickets</td><td>Events, concerts</td></tr>
+              <tr><td>JobPosting</td><td class="tag-yes">Job listing card</td><td>Career pages</td></tr>
+              <tr><td>Person</td><td class="tag-partial">Knowledge panel</td><td>Personal/portfolio</td></tr>
+              <tr><td>WebSite</td><td class="tag-partial">Sitelinks searchbox</td><td>Homepage</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>JSON-LD format (recommended)</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html — JSON-LD Article schema (live on this page)</span>
+            <span class="code-lang">JSON-LD</span>
+          </div>
+          <pre><code><span class="t">&lt;script</span> <span class="a">type</span><span class="p">=</span><span class="v">"application/ld+json"</span><span class="t">&gt;</span>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SEO Fundamentals: A Complete On-Page Guide",
+  "description": "A complete guide to SEO...",
+  "image": "https://yourdomain.com/og-image.jpg",
+  "url": "https://yourdomain.com/",
+  "datePublished": "2026-02-10",
+  "dateModified": "2026-02-10",
+  "author": {
+    "@type": "Person",
+    "name": "Rishi Saraff",
+    "url": "https://yourdomain.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rishi Saraff Web Services",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yourdomain.com/logo.jpg"
+    }
+  }
+}
+<span class="t">&lt;/script&gt;</span></code></pre>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-icon">&#9670;</span>
+          <span class="callout-body">Test your structured data at schema.org/validator or Google's Rich Results Test: search.google.com/test/rich-results. Fix all errors before deploying.</span>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 7: ROBOTS.TXT ── -->
+      <section id="crawling" class="chapter" aria-labelledby="ch-robots">
+        <div class="chapter-meta">
+          <span class="chapter-num">07</span>
+          <span class="chapter-category">Technical SEO</span>
+        </div>
+        <h2 id="ch-robots">robots.txt — Controlling Crawlers</h2>
+        <p>
+          The robots.txt file lives at the root of your domain (<code style="font-family:var(--font-mono);color:var(--green);font-size:.85em">yourdomain.com/robots.txt</code>)
+          and tells search engine crawlers which parts of your site they can and cannot access.
+          It is the first file most crawlers fetch when they visit your site.
+        </p>
+
+        <div class="callout danger">
+          <span class="callout-icon">&#9888;</span>
+          <span class="callout-body">robots.txt is a REQUEST, not a block. Reputable crawlers (Googlebot) respect it. Malicious bots often ignore it. Use server-side access controls or noindex meta tags for truly sensitive pages.</span>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">robots.txt — anatomy and examples</span>
+            <span class="code-lang">TEXT</span>
+          </div>
+          <pre><code><span class="c"># User-agent specifies WHICH crawler this rule applies to</span>
+<span class="c"># * means ALL crawlers</span>
+<span class="t">User-agent:</span> <span class="v">*</span>
+<span class="t">Allow:</span> <span class="v">/</span>                    <span class="c"># allow everything by default</span>
+<span class="t">Disallow:</span> <span class="v">/admin/</span>           <span class="c"># block admin panel</span>
+<span class="t">Disallow:</span> <span class="v">/api/</span>             <span class="c"># block API endpoints</span>
+<span class="t">Disallow:</span> <span class="v">/checkout/</span>        <span class="c"># block checkout pages</span>
+<span class="t">Disallow:</span> <span class="v">/search?</span>          <span class="c"># block internal search results</span>
+
+<span class="c"># Point to your sitemap — helps crawlers find all your pages</span>
+<span class="t">Sitemap:</span> <span class="v">https://yourdomain.com/sitemap.xml</span>
+
+<span class="c">---</span>
+
+<span class="c"># Crawl-delay: how many seconds to wait between requests</span>
+<span class="c"># Use if your server can't handle heavy crawler traffic</span>
+<span class="t">User-agent:</span> <span class="v">Googlebot</span>
+<span class="t">Crawl-delay:</span> <span class="v">2</span>
+
+<span class="c">---</span>
+
+<span class="c"># Block a specific crawler entirely (e.g. AI training scrapers)</span>
+<span class="t">User-agent:</span> <span class="v">GPTBot</span>
+<span class="t">Disallow:</span> <span class="v">/</span>
+
+<span class="t">User-agent:</span> <span class="v">CCBot</span>
+<span class="t">Disallow:</span> <span class="v">/</span></code></pre>
+        </div>
+
+        <div class="callout warn">
+          <span class="callout-icon">&#9651;</span>
+          <span class="callout-body">Critical: your robots.txt must use your PRODUCTION domain, not localhost. A misconfigured robots.txt pointing to localhost is one of the most common SEO mistakes on dev-deployed sites.</span>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">robots.txt — this project (correct version)</span>
+            <span class="code-lang">TEXT</span>
+          </div>
+          <pre><code><span class="t">User-agent:</span> <span class="v">*</span>
+<span class="t">Allow:</span> <span class="v">/</span>
+<span class="t">Sitemap:</span> <span class="v">https://risa-source.github.io/BasicSEOImprovement/sitemap.xml</span>
+
+<span class="c"># Wrong (original file — this would prevent Google finding your sitemap):</span>
+<span class="c"># Sitemap: http://localhost/Workshop11/sitemap.xml</span></code></pre>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 8: SITEMAP ── -->
+      <section id="sitemap" class="chapter" aria-labelledby="ch-sitemap">
+        <div class="chapter-meta">
+          <span class="chapter-num">08</span>
+          <span class="chapter-category">Technical SEO</span>
+        </div>
+        <h2 id="ch-sitemap">XML Sitemap</h2>
+        <p>
+          A sitemap is a file that lists all the pages on your site you want search engines to index.
+          It doesn't guarantee indexing, but it dramatically speeds up discovery —
+          especially for large sites, new sites, or pages with few inbound links.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">sitemap.xml — full annotated example</span>
+            <span class="code-lang">XML</span>
+          </div>
+          <pre><code><span class="p">&lt;?</span><span class="t">xml</span> <span class="a">version</span><span class="p">=</span><span class="v">"1.0"</span> <span class="a">encoding</span><span class="p">=</span><span class="v">"UTF-8"</span><span class="p">?&gt;</span>
+<span class="t">&lt;urlset</span> <span class="a">xmlns</span><span class="p">=</span><span class="v">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="t">&gt;</span>
+
+  <span class="t">&lt;url&gt;</span>
+    <span class="c">&lt;!-- loc: the canonical, absolute URL of the page --&gt;</span>
+    <span class="t">&lt;loc&gt;</span>https://yourdomain.com/<span class="t">&lt;/loc&gt;</span>
+
+    <span class="c">&lt;!-- lastmod: when the page content was last changed (YYYY-MM-DD) --&gt;</span>
+    <span class="t">&lt;lastmod&gt;</span>2026-02-10<span class="t">&lt;/lastmod&gt;</span>
+
+    <span class="c">&lt;!-- changefreq: hint to crawlers — always|daily|weekly|monthly|never --&gt;</span>
+    <span class="c">&lt;!-- Google largely ignores this, but it costs nothing to include     --&gt;</span>
+    <span class="t">&lt;changefreq&gt;</span>monthly<span class="t">&lt;/changefreq&gt;</span>
+
+    <span class="c">&lt;!-- priority: relative importance 0.0–1.0 within YOUR site only --&gt;</span>
+    <span class="c">&lt;!-- Does not affect how Google ranks you vs other sites           --&gt;</span>
+    <span class="t">&lt;priority&gt;</span>1.0<span class="t">&lt;/priority&gt;</span>
+  <span class="t">&lt;/url&gt;</span>
+
+  <span class="t">&lt;url&gt;</span>
+    <span class="t">&lt;loc&gt;</span>https://yourdomain.com/about/<span class="t">&lt;/loc&gt;</span>
+    <span class="t">&lt;lastmod&gt;</span>2026-01-20<span class="t">&lt;/lastmod&gt;</span>
+    <span class="t">&lt;changefreq&gt;</span>yearly<span class="t">&lt;/changefreq&gt;</span>
+    <span class="t">&lt;priority&gt;</span>0.7<span class="t">&lt;/priority&gt;</span>
+  <span class="t">&lt;/url&gt;</span>
+
+<span class="t">&lt;/urlset&gt;</span></code></pre>
+        </div>
+
+        <div class="callout info">
+          <span class="callout-icon">&#9432;</span>
+          <span class="callout-body">Submit your sitemap in Google Search Console: Settings → Sitemaps. This is the fastest way to get new content indexed. A sitemap reference in robots.txt is secondary but also important.</span>
+        </div>
+
+        <h3>What to exclude from your sitemap</h3>
+        <ul class="checklist" role="list">
+          <li><span class="chk">&#10007;</span> Pages with <code style="color:var(--green);font-size:.85em">noindex</code> meta robot tag</li>
+          <li><span class="chk">&#10007;</span> Paginated archive pages (e.g. <code style="color:var(--green);font-size:.85em">/page/2/</code>, <code style="color:var(--green);font-size:.85em">/page/3/</code>)</li>
+          <li><span class="chk">&#10007;</span> Thank-you pages, login pages, checkout pages</li>
+          <li><span class="chk">&#10007;</span> Duplicate content URLs (use canonical instead)</li>
+          <li><span class="chk">&#10007;</span> URLs that return non-200 HTTP status codes</li>
+          <li><span class="chk">&#10007;</span> Disallowed URLs in robots.txt</li>
+        </ul>
+      </section>
+
+      <!-- ── CHAPTER 9: CONTENT SEO ── -->
+      <section id="content" class="chapter" aria-labelledby="ch-content">
+        <div class="chapter-meta">
+          <span class="chapter-num">09</span>
+          <span class="chapter-category">Content SEO</span>
+        </div>
+        <h2 id="ch-content">Heading Hierarchy &amp; Content Structure</h2>
+        <p>
+          Search engines use your heading structure as an outline of the page's topic and subtopics.
+          A clear, logical hierarchy helps Google understand what the page is about and which parts are
+          most important. It also drastically improves readability for humans and screen reader users.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html — correct heading hierarchy</span>
+            <span class="code-lang">HTML</span>
+          </div>
+          <pre><code><span class="c">&lt;!-- ONE h1 per page — the primary topic --&gt;</span>
+<span class="t">&lt;h1&gt;</span>SEO Fundamentals: Complete On-Page Guide<span class="t">&lt;/h1&gt;</span>
+
+  <span class="c">&lt;!-- h2 — major sections of the page --&gt;</span>
+  <span class="t">&lt;h2&gt;</span>The &lt;head&gt; — Where SEO Begins<span class="t">&lt;/h2&gt;</span>
+
+    <span class="c">&lt;!-- h3 — subsections within an h2 --&gt;</span>
+    <span class="t">&lt;h3&gt;</span>The minimal viable head<span class="t">&lt;/h3&gt;</span>
+
+      <span class="c">&lt;!-- h4 — subsections within an h3, use sparingly --&gt;</span>
+      <span class="t">&lt;h4&gt;</span>Character encoding<span class="t">&lt;/h4&gt;</span>
+
+<span class="c">&lt;!-- NEVER skip levels: h1 → h3 (skipped h2) is wrong --&gt;</span>
+<span class="c">&lt;!-- NEVER use headings for visual size only — use CSS  --&gt;</span></code></pre>
+        </div>
+
+        <h3>Semantic HTML elements</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Element</th><th>Semantic meaning</th><th>SEO signal</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code style="color:var(--green)">&lt;article&gt;</code></td><td>Self-contained piece of content</td><td class="tag-yes">Strong — marks primary content</td></tr>
+              <tr><td><code style="color:var(--green)">&lt;section&gt;</code></td><td>Thematic grouping with a heading</td><td class="tag-yes">Good — organises topics</td></tr>
+              <tr><td><code style="color:var(--green)">&lt;nav&gt;</code></td><td>Navigation links</td><td class="tag-yes">Site structure signal</td></tr>
+              <tr><td><code style="color:var(--green)">&lt;main&gt;</code></td><td>Page's primary unique content</td><td class="tag-yes">Identifies main content</td></tr>
+              <tr><td><code style="color:var(--green)">&lt;header&gt;</code></td><td>Introductory / branding content</td><td class="tag-partial">Structural context</td></tr>
+              <tr><td><code style="color:var(--green)">&lt;footer&gt;</code></td><td>Supplementary / legal content</td><td class="tag-partial">Lower content weight</td></tr>
+              <tr><td><code style="color:var(--green)">&lt;aside&gt;</code></td><td>Tangentially related content</td><td class="tag-partial">Lower content weight</td></tr>
+              <tr><td><code style="color:var(--green)">&lt;div&gt;</code></td><td>No meaning</td><td class="tag-no">Zero SEO signal</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 10: IMAGES ── -->
+      <section id="images" class="chapter" aria-labelledby="ch-images">
+        <div class="chapter-meta">
+          <span class="chapter-num">10</span>
+          <span class="chapter-category">On-Page</span>
+        </div>
+        <h2 id="ch-images">Image Optimisation</h2>
+        <p>
+          Images are the leading cause of slow page loads and poor Core Web Vitals scores.
+          They're also an independent channel for traffic via Google Image Search.
+          Getting image SEO right means better rankings AND a faster site.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html — fully optimised image</span>
+            <span class="code-lang">HTML</span>
+          </div>
+          <pre><code><span class="c">&lt;!-- BAD — the original version --&gt;</span>
+<span class="t">&lt;img</span> <span class="a">src</span><span class="p">=</span><span class="v">"big-image.jpg"</span><span class="t">&gt;</span>
+<span class="c">&lt;!-- No alt text: invisible to screen readers, no keyword signal     --&gt;</span>
+<span class="c">&lt;!-- No dimensions: causes layout shift (hurts CLS Core Web Vital)   --&gt;</span>
+<span class="c">&lt;!-- No loading attr: blocks rendering of below-fold content         --&gt;</span>
+
+<span class="c">&lt;!-- GOOD — fully optimised --&gt;</span>
+<span class="t">&lt;figure&gt;</span>
+  <span class="t">&lt;img</span>
+    <span class="a">src</span><span class="p">=</span><span class="v">"optimized-image.jpg"</span>
+    <span class="a">alt</span><span class="p">=</span><span class="v">"Modern office workspace with natural light and standing desks"</span>
+    <span class="c">&lt;!-- alt: describe the image for screen readers AND image search  --&gt;</span>
+    <span class="c">&lt;!-- Do NOT: alt="image of office" or alt="keyword keyword office" --&gt;</span>
+
+    <span class="a">width</span><span class="p">=</span><span class="v">"800"</span>
+    <span class="a">height</span><span class="p">=</span><span class="v">"600"</span>
+    <span class="c">&lt;!-- Explicit dimensions prevent Cumulative Layout Shift (CLS)     --&gt;</span>
+    <span class="c">&lt;!-- Browser reserves space before image loads → no jumping layout --&gt;</span>
+
+    <span class="a">loading</span><span class="p">=</span><span class="v">"lazy"</span>
+    <span class="c">&lt;!-- Defer off-screen images until user scrolls near them          --&gt;</span>
+    <span class="c">&lt;!-- Use loading="eager" for the hero/above-fold image only        --&gt;</span>
+
+    <span class="a">decoding</span><span class="p">=</span><span class="v">"async"</span>
+    <span class="c">&lt;!-- Decode image off the main thread → doesn't block rendering    --&gt;</span>
+  <span class="t">&gt;</span>
+  <span class="t">&lt;figcaption&gt;</span>Our office workspace — built for deep work.<span class="t">&lt;/figcaption&gt;</span>
+<span class="t">&lt;/figure&gt;</span></code></pre>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-icon">&#9670;</span>
+          <span class="callout-body">For your hero/above-fold image: use loading="eager" and add &lt;link rel="preload" as="image"&gt; in &lt;head&gt;. This is the single biggest LCP improvement for image-heavy pages.</span>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 11: PERFORMANCE / CORE WEB VITALS ── -->
+      <section id="performance" class="chapter" aria-labelledby="ch-perf">
+        <div class="chapter-meta">
+          <span class="chapter-num">11</span>
+          <span class="chapter-category">Technical SEO</span>
+        </div>
+        <h2 id="ch-perf">Performance &amp; Core Web Vitals</h2>
+        <p>
+          Since 2021, Google uses Core Web Vitals (CWV) as a confirmed ranking signal under the "Page Experience" update.
+          These are real-world UX measurements captured in Chrome user data. They reflect how your page actually
+          feels to use — not just how fast it theoretically loads.
+        </p>
+
+        <div class="cwv-grid">
+          <div class="cwv-card">
+            <p class="cwv-abbr">LCP</p>
+            <p class="cwv-name">Largest Contentful Paint</p>
+            <p class="cwv-desc">How long until the largest visible element (hero image, headline) renders. Measures perceived load speed.</p>
+            <span class="cwv-threshold">Good: &lt; 2.5s</span>
+          </div>
+          <div class="cwv-card">
+            <p class="cwv-abbr">CLS</p>
+            <p class="cwv-name">Cumulative Layout Shift</p>
+            <p class="cwv-desc">How much page elements unexpectedly jump around during load. Caused by images without dimensions, late-loading fonts.</p>
+            <span class="cwv-threshold">Good: &lt; 0.1</span>
+          </div>
+          <div class="cwv-card">
+            <p class="cwv-abbr">INP</p>
+            <p class="cwv-name">Interaction to Next Paint</p>
+            <p class="cwv-desc">How quickly the page responds to user interaction (click, tap, key press). Replaced FID in March 2024.</p>
+            <span class="cwv-threshold">Good: &lt; 200ms</span>
+          </div>
+        </div>
+
+        <h3>Performance techniques used on this page</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">index.html &lt;head&gt; — performance annotations</span>
+            <span class="code-lang">HTML</span>
+          </div>
+          <pre><code><span class="c">&lt;!-- 1. dns-prefetch: resolve domain name early (~20ms saved) --&gt;</span>
+<span class="t">&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"dns-prefetch"</span> <span class="a">href</span><span class="p">=</span><span class="v">"//fonts.googleapis.com"</span><span class="t">&gt;</span>
+
+<span class="c">&lt;!-- 2. preconnect: DNS + TCP + TLS early (~150ms saved)      --&gt;</span>
+<span class="t">&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"preconnect"</span> <span class="a">href</span><span class="p">=</span><span class="v">"https://fonts.googleapis.com"</span><span class="t">&gt;</span>
+<span class="t">&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"preconnect"</span> <span class="a">href</span><span class="p">=</span><span class="v">"https://fonts.gstatic.com"</span> <span class="a">crossorigin</span><span class="t">&gt;</span>
+
+<span class="c">&lt;!-- 3. font-display:swap prevents invisible text during load  --&gt;</span>
+<span class="t">&lt;link</span> <span class="a">href</span><span class="p">=</span><span class="v">"https://fonts.googleapis.com/css2?family=...&amp;display=swap"</span> ...<span class="t">&gt;</span>
+
+<span class="c">&lt;!-- 4. Non-render-blocking CSS via preload trick             --&gt;</span>
+<span class="t">&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"preload"</span> <span class="a">href</span><span class="p">=</span><span class="v">"style.css"</span> <span class="a">as</span><span class="p">=</span><span class="v">"style"</span>
+      <span class="a">onload</span><span class="p">=</span><span class="v">"this.onload=null;this.rel='stylesheet'"</span><span class="t">&gt;</span>
+<span class="t">&lt;noscript&gt;&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"stylesheet"</span> <span class="a">href</span><span class="p">=</span><span class="v">"style.css"</span><span class="t">&gt;&lt;/noscript&gt;</span>
+
+<span class="c">&lt;!-- 5. Explicit image dimensions prevent CLS                --&gt;</span>
+<span class="t">&lt;img</span> <span class="a">width</span><span class="p">=</span><span class="v">"800"</span> <span class="a">height</span><span class="p">=</span><span class="v">"600"</span> <span class="a">loading</span><span class="p">=</span><span class="v">"lazy"</span> <span class="a">decoding</span><span class="p">=</span><span class="v">"async"</span> ...<span class="t">&gt;</span></code></pre>
+        </div>
+      </section>
+
+      <!-- ── CHAPTER 12: FULL CHECKLIST ── -->
+      <section id="checklist" class="chapter" aria-labelledby="ch-checklist">
+        <div class="chapter-meta">
+          <span class="chapter-num">12</span>
+          <span class="chapter-category">Reference</span>
+        </div>
+        <h2 id="ch-checklist">Complete SEO Checklist</h2>
+        <p>Use this before every page goes live.</p>
+
+        <h3>Head tags</h3>
+        <ul class="checklist" role="list">
+          <li><span class="chk">&#10003;</span> charset="UTF-8" is the first tag in &lt;head&gt;</li>
+          <li><span class="chk">&#10003;</span> Viewport meta tag with width=device-width</li>
+          <li><span class="chk">&#10003;</span> Unique &lt;title&gt; 50–60 chars, primary keyword first</li>
+          <li><span class="chk">&#10003;</span> Unique meta description 150–160 chars with call to action</li>
+          <li><span class="chk">&#10003;</span> Canonical link tag with absolute production URL</li>
+          <li><span class="chk">&#10003;</span> meta robots content="index, follow" (or noindex where needed)</li>
+          <li><span class="chk">&#10003;</span> Full Open Graph tags: type, title, description, image, url, site_name</li>
+          <li><span class="chk">&#10003;</span> Twitter Card tags: card, title, description, image</li>
+          <li><span class="chk">&#10003;</span> JSON-LD structured data matching the page content type</li>
+          <li><span class="chk">&#10003;</span> Favicon (SVG preferred, data URI avoids extra request)</li>
+        </ul>
+
+        <h3>Content &amp; markup</h3>
+        <ul class="checklist" role="list">
+          <li><span class="chk">&#10003;</span> Exactly one &lt;h1&gt; containing the primary keyword</li>
+          <li><span class="chk">&#10003;</span> Logical heading hierarchy h1 → h2 → h3 (no skipped levels)</li>
+          <li><span class="chk">&#10003;</span> Semantic landmark elements: &lt;header&gt;, &lt;main&gt;, &lt;nav&gt;, &lt;footer&gt;</li>
+          <li><span class="chk">&#10003;</span> lang attribute on &lt;html&gt; element</li>
+          <li><span class="chk">&#10003;</span> All images have descriptive alt text</li>
+          <li><span class="chk">&#10003;</span> All images have explicit width and height attributes</li>
+          <li><span class="chk">&#10003;</span> loading="lazy" on below-fold images</li>
+          <li><span class="chk">&#10003;</span> loading="eager" on above-fold/hero image</li>
+        </ul>
+
+        <h3>Technical files</h3>
+        <ul class="checklist" role="list">
+          <li><span class="chk">&#10003;</span> robots.txt exists at domain root with production URL</li>
+          <li><span class="chk">&#10003;</span> robots.txt Sitemap directive points to production sitemap URL</li>
+          <li><span class="chk">&#10003;</span> sitemap.xml exists with all indexable pages</li>
+          <li><span class="chk">&#10003;</span> sitemap.xml submitted to Google Search Console</li>
+          <li><span class="chk">&#10003;</span> All sitemap URLs return HTTP 200</li>
+          <li><span class="chk">&#10003;</span> No noindex pages are included in the sitemap</li>
+        </ul>
+
+        <h3>Performance</h3>
+        <ul class="checklist" role="list">
+          <li><span class="chk">&#10003;</span> LCP &lt; 2.5s (test with PageSpeed Insights)</li>
+          <li><span class="chk">&#10003;</span> CLS &lt; 0.1 (all images and embeds have dimensions)</li>
+          <li><span class="chk">&#10003;</span> INP &lt; 200ms (minimal JS blocking main thread)</li>
+          <li><span class="chk">&#10003;</span> CSS loaded non-render-blocking or inlined</li>
+          <li><span class="chk">&#10003;</span> Google Fonts use display=swap</li>
+          <li><span class="chk">&#10003;</span> preconnect hints for critical external origins</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
 
   <footer role="contentinfo">
     <div class="footer-inner">
-      <p class="footer-brand">Rishi Saraff Web Services</p>
-      <nav aria-label="Footer navigation">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <p class="footer-copy">&copy; 2026 Rishi Saraff. All rights reserved.</p>
+      <p>
+        <span style="color:var(--green);font-weight:600;">Rishi Saraff</span> — SEO Fundamentals Reference
+        &nbsp;|&nbsp;
+        <a href="https://risa-source.github.io/BasicSEOImprovement/">View live site</a>
+        &nbsp;|&nbsp;
+        <a href="https://search.google.com/test/rich-results">Test structured data</a>
+        &nbsp;|&nbsp;
+        <a href="https://pagespeed.web.dev/">Test performance</a>
+      </p>
+      <p style="margin-top:.5rem">&copy; 2026 Rishi Saraff. All rights reserved.</p>
     </div>
   </footer>
 
