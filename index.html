@@ -228,17 +228,34 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@700;800&family=Epilogue:wght@400;500&display=swap" rel="stylesheet">
 
   <!--
-    [SEO #14] Non-render-blocking CSS
+    [SEO #14] Non-render-blocking CSS + FOUC prevention
     ─────────────────────────────────────────────────────────────
     By default, <link rel="stylesheet"> blocks rendering — the browser
     won't paint ANYTHING until the CSS downloads.
-    The preload trick below loads CSS asynchronously:
+    The preload trick loads CSS asynchronously:
       rel="preload" as="style"  → download at high priority, don't block render
       onload="...rel='stylesheet'" → apply it once downloaded
     The <noscript> fallback covers browsers with JS disabled.
-    This improves Largest Contentful Paint (LCP) — a Core Web Vitals metric.
+
+    The tradeoff with async CSS: the browser can briefly render raw unstyled
+    HTML before the stylesheet arrives — a "Flash of Unstyled Content" (FOUC).
+
+    Fix: hide <body> immediately with opacity:0 in a tiny inline <style>
+    (inline styles apply instantly, before any external file loads).
+    Then fade in once the stylesheet is ready by adding a .css-ready class.
+    The transition gives a smooth appearance instead of a hard pop.
+    The noscript fallback ensures content is always visible without JS.
   -->
-  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <style>
+    /* Hide body immediately to prevent FOUC */
+    body { opacity: 0; }
+    /* Once .css-ready is added, fade in smoothly */
+    body.css-ready { opacity: 1; transition: opacity 0.2s ease; }
+    /* Fallback: if JS is disabled, always show content */
+  </style>
+  <noscript><style>body { opacity: 1; }</style></noscript>
+
+  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet';document.body.classList.add('css-ready')">
   <noscript><link rel="stylesheet" href="style.css"></noscript>
 
 </head>
@@ -952,9 +969,14 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
 <span class="c">&lt;!-- 3. font-display:swap prevents invisible text during load  --&gt;</span>
 <span class="t">&lt;link</span> <span class="a">href</span><span class="p">=</span><span class="v">"https://fonts.googleapis.com/css2?family=...&amp;display=swap"</span> ...<span class="t">&gt;</span>
 
-<span class="c">&lt;!-- 4. Non-render-blocking CSS via preload trick             --&gt;</span>
+<span class="c">&lt;!-- 4. Non-render-blocking CSS + FOUC prevention            --&gt;</span>
+<span class="c">&lt;!-- Step A: hide body instantly via inline style            --&gt;</span>
+<span class="t">&lt;style&gt;</span>body { opacity: 0; } body.css-ready { opacity: 1; transition: opacity 0.2s ease; }<span class="t">&lt;/style&gt;</span>
+<span class="t">&lt;noscript&gt;&lt;style&gt;</span>body { opacity: 1; }<span class="t">&lt;/style&gt;&lt;/noscript&gt;</span>
+
+<span class="c">&lt;!-- Step B: load CSS async, then reveal body once ready     --&gt;</span>
 <span class="t">&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"preload"</span> <span class="a">href</span><span class="p">=</span><span class="v">"style.css"</span> <span class="a">as</span><span class="p">=</span><span class="v">"style"</span>
-      <span class="a">onload</span><span class="p">=</span><span class="v">"this.onload=null;this.rel='stylesheet'"</span><span class="t">&gt;</span>
+      <span class="a">onload</span><span class="p">=</span><span class="v">"this.onload=null;this.rel='stylesheet';document.body.classList.add('css-ready')"</span><span class="t">&gt;</span>
 <span class="t">&lt;noscript&gt;&lt;link</span> <span class="a">rel</span><span class="p">=</span><span class="v">"stylesheet"</span> <span class="a">href</span><span class="p">=</span><span class="v">"style.css"</span><span class="t">&gt;&lt;/noscript&gt;</span>
 
 <span class="c">&lt;!-- 5. Explicit image dimensions prevent CLS                --&gt;</span>
@@ -1012,7 +1034,7 @@ https://example.com/page?sort=asc          <span class="c"># filter/sort paramet
           <li><span class="chk">&#10003;</span> LCP &lt; 2.5s (test with PageSpeed Insights)</li>
           <li><span class="chk">&#10003;</span> CLS &lt; 0.1 (all images and embeds have dimensions)</li>
           <li><span class="chk">&#10003;</span> INP &lt; 200ms (minimal JS blocking main thread)</li>
-          <li><span class="chk">&#10003;</span> CSS loaded non-render-blocking or inlined</li>
+          <li><span class="chk">&#10003;</span> CSS loaded non-render-blocking (preload trick) + FOUC prevented (opacity:0 on body until css-ready)</li>
           <li><span class="chk">&#10003;</span> Google Fonts use display=swap</li>
           <li><span class="chk">&#10003;</span> preconnect hints for critical external origins</li>
         </ul>
